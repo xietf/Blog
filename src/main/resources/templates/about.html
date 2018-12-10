@@ -1,0 +1,101 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人博客――漫漫星空</title>
+    <meta name="keywords" content="个人博客――漫漫星空" />
+    <meta name="description" content="个人博客――漫漫星空" />
+<link href="/css/base.css" rel="stylesheet">
+<link href="/css/main.css" rel="stylesheet">
+<link href="/css/m.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="/js/modernizr.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/js/jquery-1.9.0.min.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div class="contenttop">
+            <div class="logo f_l"><img src="../images/谢添锋.png"/></div>
+            <div class="search f_r">
+                <form action="#" method="post" name="searchform" id="searchform">
+                    <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+                    <input name="Submit" class="input_submit" value="搜索" type="submit">
+                </form>
+            </div>
+            <div class="blank"></div>
+            <div  class="navigation">
+                <ul class="menu">
+                    <li><a href="/index/toindex">网站首页</a></li>
+                    <li><a href="#">我的日记</a>
+                        <ul>
+                            <li><a href="/index/tolifelistpic">个人日记</a></li>
+                            <li><a href="/index/tostudylistpic">学习笔记</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/index/toskilllistpic">技术文章</a> </li>
+                    <li><a href="/index/toabout">关于我</a></li>
+                    <li><a href="/index/tomessage">给我留言</a> </li>
+                </ul>
+            </div>
+            <SCRIPT type=text/javascript>
+                // Navigation Menu
+                $(function() {
+                    $(".menu ul").css({display: "none"}); // Opera Fix
+                    $(".menu li").hover(function(){
+                        $(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+                    },function(){
+                        $(this).find('ul:first').css({visibility: "hidden"});
+                    });
+                });
+            </SCRIPT>
+        </div>
+    </header>
+    <div class="container">
+        <div class="con_content">
+            <div class="about_box">
+                <h2 class="nh1"><span>您现在的位置是：<a th:href="'/index/toindex'" href="/index/toindex" target="_blank">网站首页</a>>><a href="#" target="_blank">信息浏览</a></span><b>个人简介</b></h2>
+                <div class="f_box">
+                    <p class="a_title">个人简介</p>
+                    <p class="p_title"></p>
+                </div>
+                <ul class="about_content">
+                    <p>时光如水，总是无言。若你安好，便是晴天。<p/>
+                    <p> 一直想做个安静的女子，在最深的红尘里守着自己，守住最初的萌动和欣喜。</p>
+                    <p>   或者陷在一本光影流年中，翻看那些依稀旧梦。</p>
+                    <p>   时光仿佛一杯静水，依然深刻依然可以深流，</p>
+                    <p>   而一份心情却与风月无关，水逝惊鸿去。</p>
+                    <p>    站在时光的路口，回望曾经走过的美丽和温柔。</p>
+                    <p>    许多人，许多事，许多曾经花发枝满的渴求与憧憬，</p>
+                    <p>   依然在岁月的长河中缓缓流过，又默默回溯。</p>
+                    <p>   世事纷繁，时光终是无言，所谓的执念也许只是虚妄，所谓的抵达也不过是终点。</p>
+                    <p>   生命不止，红尘无尽。仅以一程换一种懂得，仅以一程换一场经历，如此，而已。</p>
+                    <p>  滚滚红尘，谁又是谁生命中的看客和过客？</p>
+                    <p>   推开一扇叫岁月的门，许多年华终于被渐次搁浅。</p>
+                    <p>   而你，永远是斜格子里的光影，游走在梦与现实的边缘。</p>
+                    <p>    若是时光锁住的葱茏，曳动冷冷的素月清秋，那么弱水三千，谁取你一瓢，醉饮红尘外？</p>
+                    <p><img src="/images/青春.jpg"></p>
+                    <p>   此生，若你安好，便是晴天。</p>
+                </ul>
+                <!-- container代码 结束 -->
+            </div>
+        </div>
+        <div class="blank"></div>
+    </div>
+    <!-- container代码 结束 -->
+
+    <footer>
+        <div class="footer">
+            <div class="f_l">
+                <p> 版权所有：<a href="">个人博客</a></p>
+            </div>
+            <div class="f_r textr">
+                <p></p>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="/js/logo.js"></script>
+</body>
+</html>

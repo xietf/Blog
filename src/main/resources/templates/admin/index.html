@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人博客――漫漫星空</title>
+    <meta name="keywords" content="个人博客――漫漫星空" />
+    <meta name="description" content="个人博客――漫漫星空" />
+    <link href="/css/base.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/m.css" rel="stylesheet">
+    <link href="/css/admin.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="/js/modernizr.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/js/jquery-1.9.0.min.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div class="contenttop">
+            <div class="logo f_l"><img src="../images/谢添锋.png"/></div>
+            <div class="search f_r" style="font-size: 18px;">
+                <a th:text="当前登录+${session.user.username}"></a>
+                <a href="/clean">注销</a>
+            </div>
+        </div>
+        <div class="blank"></div>
+    </header>
+    <div class="container">
+        <div  class="main_left">
+            <ul class="main_left_menu">
+                <li><a href="/admin/toueditor" target="iframe1" >文章发布</a></li>
+                <li><a href="#">暂未制作</a></li>
+                <li><a href="#">暂未制作</a></li>
+                <li><a href="#">暂未制作</a></li>
+                <li><a href="#">暂未制作</a></li>
+                <li><a href="#">暂未制作</a></li>
+                <li><a href="#">暂未制作</a></li>
+            </ul>
+        </div>
+        <div class="con_content" style="height: 600px;">
+            <div class="main_title"><span th:text="欢迎+${session.user.username}+来到后台管理页面"></span></div>
+            <iframe id="iframe1" name="iframe1" scrolling="no" frameborder="0"></iframe>
+
+        </div>
+    </div>
+    <footer>
+        <div class="footer">
+            <div class="f_l">
+                <p> 版权所有：<a href="">个人博客</a></p>
+            </div>
+            <div class="f_r textr">
+                <p></p>
+            </div>
+        </div>
+    </footer>
+</div>
+    <script src="/js/logo.js"></script>
+</body>
+</html>

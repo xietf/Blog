@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="/js/jquery-1.9.0.min.js"></script>
+<link href="/js/webuploader.css" rel="stylesheet">
+<script type="text/javascript" src="/js/webuploader.min.js"></script>
+<script type="text/javascript">
+    function  a(){
+        $.ajax({
+            url: "http://localhost:8080/login",
+            type: "get",
+            data: {username:"admin", password:"123"},
+            success: function(data){
+                console.info(data);
+            }
+        });
+    }
+    $(function(){
+        a();
+    })
+</script>
+<body>
+<div id="images" style="width: 85px; float: left;">上传</div>
+<script type="text/javascript">
+    var uploader ;
+    $(function(){
+        uploader = WebUploader.create({
+            auto: true,
+            swf: '/js/Uploader.swf',
+            server:'/fileUpload',
+            pick: '#images',
+            fileVal:"fileImg",
+            formData:{},
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
+        });
+
+        uploader.on('uploadSuccess', function(file,response) {
+            console.info(response.fileName);
+            $("#imageList").append("<img src=/"+response.fileName+" style='width:100px;height:100px;' />"
+                    +"<input type='hidden' name='goodsImg' value='"+response.url+"'/>"
+            );
+        });
+    });
+
+</script>
+<div id="imageList" style="float: left; width: 100px"></div>
+<span th:text="${user[0].username}"></span>
+</body>
+</html>

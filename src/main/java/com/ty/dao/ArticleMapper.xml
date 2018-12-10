@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ty.dao.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.ty.entity.Article">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="article_img" jdbcType="VARCHAR" property="articleImg" />
+    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="count_click" jdbcType="INTEGER" property="countClick" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="is_show" jdbcType="INTEGER" property="isShow" />
+    <result column="catalog_id" jdbcType="INTEGER" property="catalogId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ty.entity.Article">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, article_title, article_img, sub_title, add_time, count_click, comment_count, 
+    is_show, catalog_id
+  </sql>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ty.entity.Article">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into article (article_title, article_img, sub_title, 
+      add_time, count_click, comment_count, 
+      is_show, catalog_id, description
+      )
+    values (#{articleTitle,jdbcType=VARCHAR}, #{articleImg,jdbcType=VARCHAR}, #{subTitle,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{countClick,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, 
+      #{isShow,jdbcType=INTEGER}, #{catalogId,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ty.entity.Article">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="articleTitle != null">
+        article_title,
+      </if>
+      <if test="articleImg != null">
+        article_img,
+      </if>
+      <if test="subTitle != null">
+        sub_title,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="countClick != null">
+        count_click,
+      </if>
+      <if test="commentCount != null">
+        comment_count,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="catalogId != null">
+        catalog_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="articleTitle != null">
+        #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleImg != null">
+        #{articleImg,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countClick != null">
+        #{countClick,jdbcType=INTEGER},
+      </if>
+      <if test="commentCount != null">
+        #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="catalogId != null">
+        #{catalogId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ty.entity.Article">
+    update article
+    <set>
+      <if test="articleTitle != null">
+        article_title = #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleImg != null">
+        article_img = #{articleImg,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        sub_title = #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countClick != null">
+        count_click = #{countClick,jdbcType=INTEGER},
+      </if>
+      <if test="commentCount != null">
+        comment_count = #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="catalogId != null">
+        catalog_id = #{catalogId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ty.entity.Article">
+    update article
+    set article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_img = #{articleImg,jdbcType=VARCHAR},
+      sub_title = #{subTitle,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      count_click = #{countClick,jdbcType=INTEGER},
+      comment_count = #{commentCount,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=INTEGER},
+      catalog_id = #{catalogId,jdbcType=INTEGER},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ty.entity.Article">
+    update article
+    set article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_img = #{articleImg,jdbcType=VARCHAR},
+      sub_title = #{subTitle,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      count_click = #{countClick,jdbcType=INTEGER},
+      comment_count = #{commentCount,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=INTEGER},
+      catalog_id = #{catalogId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+    select * FROM article
+    <where>
+      1=1
+      <if test="id != null"> and id = #{id}</if>
+      <if test="articleTitle != null"> and article_title = #{article_title}</if>
+      <if test="article_img != null"> and article_img = #{article_img}</if>
+      <if test="subTitle != null"> and sub_title = #{subTitle}</if>
+      <if test="addTime != null"> and add_time = #{addTime} </if>
+      <if test="countClick != null"> and count_click = #{countClick} </if>
+      <if test="commentCount != null"> and comment_count = #{commentCount} </if>
+      <if test="isShow != null"> and is_show = #{isShow} </if>
+      <if test="catalogId != null"> and catalog_id = #{catalogId} </if>
+      <if test="description != null"> and description = #{description} </if>
+    </where>
+  </select>
+</mapper>
